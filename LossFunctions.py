@@ -7,22 +7,29 @@ class LossFunc(ABC):
         pass
 
     @abstractmethod
-    def singleForward(self, x, y):
+    def singleForward(self, prediction, true):
         pass
 
     @abstractmethod
-    def forward(self, x, y):
+    def forward(self, prediction, true):
         pass
 
+    @abstractmethod
+    def grad(self, pred, true):
+        pass
 
 class LMSError(LossFunc):
 
     def __init__(self):
         pass
 
-    def singleForward(self, x, y):
-        return ((x - y)**2)/2
+    def singleForward(self, prediction, true):
+        return ((prediction - true)**2)/2
 
-    def forward(self, x, y):
-        return np.mean((x - y)**2)/2
+    def forward(self, prediction, true):
+        return np.mean((prediction - true)**2)/2
+
+    def grad(self, pred, true):
+        return np.mean(pred - true, axis=0)
+
 
