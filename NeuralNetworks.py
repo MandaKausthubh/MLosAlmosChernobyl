@@ -22,8 +22,8 @@ class NeuralNetworks():
         grad = lossFunc.grad(inputs[-1], y)
         print(f"Loss: {FinalLoss}")
         # Followed by a backward pass
-        for i in range(self.depth-1, 0, -1):
+        for i in range(self.depth-1, -1, -1):
             b, W, grad = self.Layers[i].backProp(inputs[i-1], grad)
             self.Layers[i].UpdateWeights(lr*W, lr*b)
-        pass
+        
 
