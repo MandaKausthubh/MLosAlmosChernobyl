@@ -7,15 +7,15 @@ class LossFunc(ABC):
         pass
 
     @abstractmethod
-    def singleForward(self, prediction, true):
+    def singleForward(self, prediction, true) -> np.float32:
         pass
 
     @abstractmethod
-    def forward(self, prediction, true):
+    def forward(self, prediction, true) -> np.float32:
         pass
 
     @abstractmethod
-    def grad(self, pred, true):
+    def grad(self, pred, true) -> np.ndarray:
         pass
 
 class LMSError(LossFunc):
@@ -30,6 +30,6 @@ class LMSError(LossFunc):
         return np.mean((prediction - true)**2)/2
 
     def grad(self, pred, true):
-        return np.mean(pred - true, axis=0)
+        return (pred - true)
 
 

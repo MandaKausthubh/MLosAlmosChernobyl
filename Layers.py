@@ -14,7 +14,7 @@ class Layer():
 
 
     def forward(self, x):
-        print(f"x:{x.shape}, w:{self.weights.shape}, b:{self.biases.shape}")
+        # print(f"x:{x.shape}, w:{self.weights.shape}, b:{self.biases.shape}")
         return self.activation.forward(((self.weights @ x.T) +
             self.biases @ np.ones((1,len(x)))).T)
 
@@ -26,6 +26,7 @@ class Layer():
 
 
     def backProp(self, x, grad):
+        print(f"Weights: {self.weights.shape}, X: {x.T.shape}")
         z = ((self.weights @ x.T) + self.biases @ np.ones((1,len(x)))).T
         G = self.activation.Differential(z) * grad
         print(G.shape)
