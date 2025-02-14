@@ -26,10 +26,10 @@ class Layer():
 
 
     def backProp(self, x, grad):
-        print(f"Weights: {self.weights.shape}, X: {x.T.shape}")
+        # print(f"Weights: {self.weights.shape}, X: {x.T.shape}")
         z = ((self.weights @ x.T) + self.biases @ np.ones((1,len(x)))).T
         G = self.activation.Differential(z) * grad
-        print(G.shape)
+        # print(G.shape)
         # Calculate delta b
         del_b = np.mean(G, axis=0).reshape(-1,1)
         # Calculate delta W
