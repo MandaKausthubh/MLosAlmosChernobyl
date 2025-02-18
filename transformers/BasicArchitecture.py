@@ -90,3 +90,9 @@ class Encoder(nn.Module):
 
 # ========================================================
 # Defining a Decoder
+
+class Decoder(nn.Module):
+
+    def __init__(self, N, M) -> None:
+        super().__init__()
+        self.N, self.M = N, M
